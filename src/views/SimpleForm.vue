@@ -2,7 +2,7 @@
   <section>
     <h1 class="font-extrabold text-2xl block">Create an Event</h1>
 
-    <form action="">
+    <form action="" @submit.prevent="sendForm">
       <BaseSelect
       :options="categories"
       v-model="event.category"
@@ -59,7 +59,7 @@
 
 
 <script>
-
+  import axios from 'axios'
   import BaseInput from '../components/BaseInput.vue'
   // import BaseRadio from '../components/BaseRadio.vue'
   import BaseSelect from '../components/BaseSelect.vue'
@@ -95,6 +95,19 @@
               {label: 'Yes', value:1},
               {label: 'No', value:0}
             ]
+        }
+      },
+      methods: {
+        sendForm(){
+            axios.post(
+              'the url',
+              this.event
+              ).then(response=>{
+                console.log('Response',response)
+              })
+              .cath(function(err){
+                console.log('error',err)
+              })
         }
       }
   }
