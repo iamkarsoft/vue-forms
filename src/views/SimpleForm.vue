@@ -31,9 +31,17 @@
       </div>
 
       <div class="form-group block mt-4">
+
+
         <label for="" class="font-bold text-xl block">Are Pets Allowed?</label>
-        <BaseRadio v-model="event.pets" :value="0" label="No" name="pets" />
-        <BaseRadio v-model="event.pets" :value="1" label="Yes" name="pets" />
+        <BaseRadioGroup
+          v-model="event.pets"
+          name="pets"
+          :options="petOptions"
+          />
+
+        <!-- <BaseRadio v-model="event.pets" :value="0" label="No" name="pets" />
+        <BaseRadio v-model="event.pets" :value="1" label="Yes" name="pets" /> -->
   
       </div>
 
@@ -53,15 +61,17 @@
 <script>
 
   import BaseInput from '../components/BaseInput.vue'
-  import BaseRadio from '../components/BaseRadio.vue'
+  // import BaseRadio from '../components/BaseRadio.vue'
   import BaseSelect from '../components/BaseSelect.vue'
+  import BaseRadioGroup from '../components/BaseRadioGroup.vue'
   import BaseCheckbox from '../components/BaseCheckbox.vue'
   export default{
       components:{
         BaseInput,
         BaseSelect,
         BaseCheckbox,
-        BaseRadio
+        // BaseRadio,
+        BaseRadioGroup,
       },
       data() {
         return {
@@ -80,7 +90,11 @@
               },
               location: '',
               title:''
-            }
+            },
+            petOptions:[
+              {label: 'Yes', value:1},
+              {label: 'No', value:0}
+            ]
         }
       }
   }
